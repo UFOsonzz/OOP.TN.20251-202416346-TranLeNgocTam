@@ -1,0 +1,2 @@
+Khi thêm phương thức này, chương trình báo lỗi duplicate method, lí do là vì trình biên dịch của java khi xử lý varargs (...discs) sẽ coi nó giống như mảng => 2 method này có cùng signature => lỗi
+Cách giải quyết : đổi tên method với tham số varargs thành addDVDList() để tránh bị trùng signature

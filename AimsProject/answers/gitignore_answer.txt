@@ -1,0 +1,3 @@
+- trong ví dụ (sử dụng Eclipse) nếu không thêm những đường dẫn trên vào trong .gitignore thì khi commit, push sẽ commit, push cả những folder kia lên, giả sử ta sử dụng một IDE khác thì việc đẩy các file này lên vừa không cần thiết mà lại có thể gây xung đột.
+- với VSCode (IDE em sử dụng) thì .gitignore của em bao gồm, .vscode/, bin/, lib/
+- nếu đã lỡ commit các file tạm, sau đó muốn thêm chúng vào .gitignore và muốn git ngừng theo dõi chúng mà không xóa khỏi máy thì dùng lệnh git rm --cached -r (tên thư mục ngừng theo dõi) => git add .gitignore => commit
