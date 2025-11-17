@@ -5,7 +5,7 @@ public class Cart {
     private DigitalVideoDisc[] itemsInCart = new DigitalVideoDisc[MAX_NUMBERS_ORDEREDED];
     private int cartSize;
 
-    Cart() {
+    public Cart() {
         cartSize = 0;
     }
 
@@ -88,13 +88,15 @@ public class Cart {
     }
 
     public void print() {
-        System.out.println("Number of DVDs in the cart: " + Integer.toString(cartSize));
-        System.out.println("List of DVDs in the cart:");
-        System.out.println("|           Title           |       Price       |");
+        System.out.println("==========================THE CURRENT CART==========================");
+        System.out.println("Total items: " + "[" + Integer.toString(cartSize) + "]");
+        double subTotal = 0.0;
         for (int i = 0; i < cartSize; i++) {
-            System.out.println(itemsInCart[i].getTitle() + "        " + Double.toString(itemsInCart[i].getCost()));
+            subTotal += itemsInCart[i].getCost();
+            System.out.println(itemsInCart[i].toString());
         }
-        System.out.println("---------------------------------------------------");
+        System.out.println("Subtotal: " + "[" + Double.toString(subTotal) + "]$");
+        System.out.println("====================================================================");
     }
 
 }
