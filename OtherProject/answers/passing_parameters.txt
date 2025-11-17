@@ -1,0 +1,54 @@
+1. Khi chạy method swap(s1, s2) thì ta đang tạo ra 2 thằng khác thằng s1 và s2 thật, do đó thay đổi 2 thằng này bằng các operator "=" chỉ làm thay đổi 2 bản sao này chứ không làm thay đổi s1, s2 gốc
+=> Java là ngôn ngữ lập trình truyền tham trị
+2. Cách để swap được : sử dụng các hàm setter để thay đổi thuộc tính
+Code : 
+    public static void swap(Object o1, Object o2) {
+        int tempStudentId = ((Student)o1).getStudentId();
+        String tempName = ((Student)o1).getName();
+
+        ((Student)o1).setStudentId(((Student)o2).getStudentId());
+        ((Student)o1).setName(((Student)o2).getName());
+
+        ((Student)o2).setStudentId(tempStudentId);
+        ((Student)o2).setName(tempName);
+    }
+3. 
+Sơ đồ minh họa : 
+Ban đầu : 
+- Stack {tên biến, giá trị} :
+{s1, 0x1}, {s2, 0x2}
+- Heap {địa chỉ, nội dung} :
+{0x1, {1, A}}, {0x2, {2, B}}
+
+Vừa vào hàm swap :
+- Stack : {s1, 0x1}, {s2, 0x2}, {o1, 0x1}, {o2, 0x2}
+- Heap : {0x1, {1, A}}, {0x2, {2, B}}
+
+Trạng thái sau khi lấy temp:
+- Stack: {s1, 0x1}, {s2, 0x2}, {o1, 0x1}, {o2, 0x2}, {tempStudentId, 1}, {tempName, A}
+- Heap: {0x1, {1, A}}, {0x2, {2, B}}
+
+Tiếp lệnh: ((Student)o1).setStudentId(((Student)o2).getStudentId());
+- ((Student)o2).getStudentId() -> trả về 2
+- Stack vẫn giữ: {tempStudentId, 1}, {tempName, A}
+- Heap: {0x1, {2, A}}, {0x2, {2, B}}
+
+Tiếp lệnh: ((Student)o1).setName(((Student)o2).getName());
+- ((Student)o2).getName() -> trả về "B"
+- setName trên 0x1: cập nhật tên của 0x1 từ "A" -> "B"
+- Heap: {0x1, {2, B}}, {0x2, {2, B}}
+
+Tiếp lệnh: ((Student)o2).setStudentId(tempStudentId);
+- Gán id của đối tượng 0x2 = tempStudentId (1)
+- Heap: {0x1, {2, B}}, {0x2, {1, B}}
+
+Tiếp lệnh: ((Student)o2).setName(tempName);
+- Gán name của đối tượng 0x2 = tempName ("A")
+- Heap: {0x1, {2, B}}, {0x2, {1, A}}
+
+Sau khi return từ swap:
+- Stack: {s1, 0x1}, {s2, 0x2}
+- Heap: {0x1, {2, B}}, {0x2, {1, A}}
+
+
+
