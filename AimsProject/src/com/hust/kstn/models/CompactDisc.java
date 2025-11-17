@@ -1,47 +1,27 @@
 package com.hust.kstn.models;
 import java.util.ArrayList;
 import java.util.List;
-public class CompactDisc {
-    private static int nbCDs = 0;
-    private int id;
-    private String title;
-    private String category;
+public class CompactDisc extends Disc {
     private String artist;
-    private double cost;
     private List<Track> tracks = new ArrayList<>();
     public CompactDisc(String title, String category, String artist, double cost, List<Track> tracks) {
-        this.title = title;
-        this.category = category;
+        super(title, category, cost);
         this.artist = artist;
-        this.cost = cost;
         this.tracks = tracks;
-        this.id = ++nbCDs;
     }
-    public int getId() {
-        return id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public String getCategory() {
-        return category;
-    }
+    
     public String getArtist() {
         return artist;
     }
-    public double getCost() {
-        return cost;
-    }
+    
     public List<Track> getTracks() {
         return tracks;
     }
 
     @Override
     public String toString() {
-        return "CompactDisc[" + this.title + "]["
-                + this.category + "]["
-                + this.artist + "]["
-                + this.cost + "]"
+        return super.toString() + "]["
+                + this.artist + "]"
                 + "\nTracks: " + this.tracks;
     }
 

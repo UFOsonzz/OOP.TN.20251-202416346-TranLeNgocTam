@@ -1,0 +1,3 @@
+Ý nghĩa từ khóa super : 
++ Trong constructor : từ khóa super dùng để khởi tạo phần Media của Book, trong mã nguồn hiện tại Media đang không có constructor mặc định nên bắt buộc phải dùng super
++ Trong super.toString() : gọi method toString() của Media, in ra các phần Media của Book, sau đó chỉ cần in thêm các phần riêng của Book là được

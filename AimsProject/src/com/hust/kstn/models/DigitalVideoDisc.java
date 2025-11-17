@@ -1,53 +1,13 @@
 package com.hust.kstn.models;
 
-public class DigitalVideoDisc {
-    private static int nbDigitalVideoDiscs = 0;
-    private int id;
-    private String title;
-    private String category;
-    private double cost;
+public class DigitalVideoDisc extends Disc {
     private String director;
     private int length;
 
-    public DigitalVideoDisc(String title) {
-        this.title = title;
-        this.id = ++nbDigitalVideoDiscs;
-    }
-
-    public DigitalVideoDisc(String category, String title, double cost) {
-        this.category = category;
-        this.title = title;
-        this.cost = cost;
-        this.id = ++nbDigitalVideoDiscs;
-    }
-
-    public DigitalVideoDisc(String director, String category, String title, double cost) {
-        this.director = director;
-        this.category = category;
-        this.title = title;
-        this.cost = cost;
-        this.id = ++nbDigitalVideoDiscs;
-    }
-
-    public DigitalVideoDisc(String title, String category, String director, int length, double cost) {
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
+    public DigitalVideoDisc(String title, String category, double cost, String director, int length) {
+        super(title, category, cost);
         this.director = director;
         this.length = length;
-        this.id = ++nbDigitalVideoDiscs;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public double getCost() {
-        return cost;
     }
 
     public String getDirector() {
@@ -60,11 +20,8 @@ public class DigitalVideoDisc {
 
     @Override
     public String toString() {
-        return "DVD" + "[" + this.id + "]"
-                + "[" + this.title + "]"
-                + "[" + this.cost + "]"
-                + "[" + this.director + "]"
-                + "[" + this.length + "]"
-                + "[" + this.category + "]";
+        return super.toString() 
+                + "[" + this.director + "]["
+                + this.length + " seconds]";
     }
 }
