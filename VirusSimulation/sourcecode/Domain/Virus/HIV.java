@@ -7,6 +7,12 @@ package Domain.Virus;
  * Contains RNA genetic material in a conical capsid
  */
 public class HIV extends EnvelopedVirus {
+    
+    // Auto-registration with VirusRepository - no need to modify Repository when adding new virus!
+    static {
+        VirusRepository.registerVirus(HIV.class);
+    }
+    
     public HIV(NucleicAcid nucleicAcid, Capsid capsid, InfectionStrategy infectionStrategy, LipidEnvelop lipidEnvelop) {
         super("HIV", nucleicAcid, capsid, infectionStrategy, lipidEnvelop);
     }

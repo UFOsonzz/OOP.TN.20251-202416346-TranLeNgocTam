@@ -7,6 +7,12 @@ package Domain.Virus;
  * Contains DNA genetic material in an icosahedral capsid
  */
 public class AdenoVirus extends NonEnvelopedVirus {
+    
+    // Auto-registration with VirusRepository - no need to modify Repository when adding new virus!
+    static {
+        VirusRepository.registerVirus(AdenoVirus.class);
+    }
+    
     public AdenoVirus(NucleicAcid nucleicAcid, Capsid capsid, InfectionStrategy infectionStrategy) {
         super("AdenoVirus", nucleicAcid, capsid, infectionStrategy);
     }

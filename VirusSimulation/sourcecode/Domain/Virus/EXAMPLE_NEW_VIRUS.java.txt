@@ -1,0 +1,123 @@
+/*
+ * ============================================================================
+ * EXAMPLE: How to Add a New Virus to the System
+ * ============================================================================
+ * 
+ * This file demonstrates how easy it is to extend the virus simulation
+ * with a new virus type. NO MODIFICATIONS to existing classes are needed!
+ * 
+ * Steps:
+ * 1. Create a new .java file in this directory
+ * 2. Copy and adapt the template below
+ * 3. That's it! The virus will automatically appear in the GUI and demo
+ * 
+ * The system follows the Open-Closed Principle (SOLID):
+ * - OPEN for extension (easy to add new viruses)
+ * - CLOSED for modification (no need to change existing code)
+ * ============================================================================
+ */
+
+package Domain.Virus;
+
+/**
+ * Example: Influenza Virus
+ * An enveloped virus that causes seasonal flu
+ * Uses Hemagglutinin and Neuraminidase to bind to sialic acid receptors
+ * Contains RNA genetic material in a helical capsid
+ */
+public class Influenza extends EnvelopedVirus {
+    
+    // ⭐ STEP 1: Auto-registration with VirusRepository
+    // This static block runs automatically when the class is loaded
+    // It registers this virus so the system knows about it
+    static {
+        VirusRepository.registerVirus(Influenza.class);
+    }
+    
+    // Constructor - defines the virus structure
+    public Influenza(NucleicAcid nucleicAcid, Capsid capsid, 
+                    InfectionStrategy strategy, LipidEnvelop envelope) {
+        super("Influenza", nucleicAcid, capsid, strategy, envelope);
+    }
+    
+    // ⭐ STEP 2: Factory method - creates a default configured virus
+    // This method MUST be public and static, and MUST be named "createDefault"
+    public static Influenza createDefault() {
+        // Define genetic material (DNA or RNA)
+        NucleicAcid nucleicAcid = new NucleicAcid("RNA");
+        
+        // Define capsid shape (Icosahedral, Helical, Conical, etc.)
+        Capsid capsid = new Capsid("Helical");
+        
+        // Define glycoproteins (for enveloped viruses)
+        Glycoprotein hemagglutinin = new Glycoprotein("Hemagglutinin");
+        Glycoprotein neuraminidase = new Glycoprotein("Neuraminidase");
+        java.util.List<Glycoprotein> glycoproteins = 
+            java.util.Arrays.asList(hemagglutinin, neuraminidase);
+        
+        // Create lipid envelope with glycoproteins
+        LipidEnvelop envelope = new LipidEnvelop(glycoproteins);
+        
+        // Choose infection strategy (LockKeyInfection for enveloped viruses)
+        LockKeyInfection strategy = new LockKeyInfection();
+        
+        // Return the fully configured virus
+        return new Influenza(nucleicAcid, capsid, strategy, envelope);
+    }
+}
+
+/* ============================================================================
+ * EXAMPLE: Non-Enveloped Virus
+ * ============================================================================
+ */
+
+/*
+package Domain.Virus;
+
+public class Rhinovirus extends NonEnvelopedVirus {
+    
+    // Auto-registration
+    static {
+        VirusRepository.registerVirus(Rhinovirus.class);
+    }
+    
+    public Rhinovirus(NucleicAcid nucleicAcid, Capsid capsid, 
+                     InfectionStrategy strategy) {
+        super("Rhinovirus", nucleicAcid, capsid, strategy);
+    }
+    
+    public static Rhinovirus createDefault() {
+        NucleicAcid nucleicAcid = new NucleicAcid("RNA");
+        Capsid capsid = new Capsid("Icosahedral");
+        DirectInfection strategy = new DirectInfection();
+        return new Rhinovirus(nucleicAcid, capsid, strategy);
+    }
+}
+*/
+
+/* ============================================================================
+ * What Happens Automatically:
+ * ============================================================================
+ * 
+ * 1. When you compile and run the program, Java loads all classes
+ * 2. The static block executes automatically
+ * 3. Your virus registers with VirusRepository
+ * 4. When GUI or Demo runs, VirusRepository.getInstance() is called
+ * 5. Repository discovers all registered viruses (including yours!)
+ * 6. Your virus appears in the GUI menu automatically
+ * 7. Your virus can be selected and simulated
+ * 
+ * NO NEED TO MODIFY:
+ * ❌ VirusRepository.java
+ * ❌ GUI controllers
+ * ❌ Demo class
+ * ❌ Any other existing files
+ * 
+ * BENEFITS:
+ * ✅ Clean separation of concerns
+ * ✅ Easy to test new viruses
+ * ✅ No risk of breaking existing code
+ * ✅ Students can add their own viruses independently
+ * ✅ Perfect for OOP project evaluation
+ * ============================================================================
+ */

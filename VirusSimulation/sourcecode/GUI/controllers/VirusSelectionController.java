@@ -34,7 +34,7 @@ public class VirusSelectionController {
     
     public void setVirusType(boolean isEnveloped) {
         this.isEnveloped = isEnveloped;
-        this.repository = VirusFactory.createVirusRepository();
+        this.repository = VirusRepository.getInstance();
         updateUI();
     }
     
@@ -44,11 +44,9 @@ public class VirusSelectionController {
     }
     
     private void updateUI() {
-        String virusType = isEnveloped ? "ENVELOPED VIRUSES" : "NON-ENVELOPED VIRUSES";
-        String emoji = isEnveloped ? "🔴" : "🔵";
+        String virusType = isEnveloped ? "Enveloped Viruses" : "Non-Enveloped Viruses";
         
-        titleLabel.setText(emoji + " " + virusType);
-        titleLabel.setTextFill(isEnveloped ? Color.web("#2e7d32") : Color.web("#1565c0"));
+        titleLabel.setText(virusType);
         
         if (isEnveloped) {
             descLabel.setText("These viruses have a lipid envelope with glycoproteins. They use a lock-key mechanism " +
@@ -77,39 +75,37 @@ public class VirusSelectionController {
     private Button createVirusButton(Virus virus) {
         Button button = new Button();
         
-        VBox content = new VBox(8);
+        VBox content = new VBox(5);
         content.setAlignment(Pos.CENTER_LEFT);
-        content.setPadding(new Insets(15));
+        content.setPadding(new Insets(10));
         
         // Virus name
-        Label nameLabel = new Label(getVirusEmoji(virus.getName()) + " " + virus.getName());
-        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 22));
-        nameLabel.setTextFill(Color.WHITE);
+        Label nameLabel = new Label(virus.getName());
+        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        nameLabel.setTextFill(Color.web("#2196F3"));
         
         // Virus details
         Label detailsLabel = new Label(getVirusDetails(virus));
-        detailsLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
-        detailsLabel.setTextFill(Color.web("#e0e0e0"));
+        detailsLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 11));
+        detailsLabel.setTextFill(Color.web("#666666"));
         detailsLabel.setWrapText(true);
         
         content.getChildren().addAll(nameLabel, detailsLabel);
         button.setGraphic(content);
         
-        String color = getVirusColor(virus.getName());
-        button.setPrefWidth(600);
-        button.setPrefHeight(100);
-        button.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 12; " +
-                       "-fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 4);");
+        button.setPrefWidth(500);
+        button.setPrefHeight(70);
+        button.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; " +
+                       "-fx-border-width: 1; -fx-cursor: hand;");
         
         button.setOnMouseEntered(e -> {
-            button.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 12; " +
-                           "-fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 12, 0, 0, 6); " +
-                           "-fx-scale-x: 1.03; -fx-scale-y: 1.03;");
+            button.setStyle("-fx-background-color: white; -fx-border-color: #2196F3; " +
+                           "-fx-border-width: 2; -fx-cursor: hand;");
         });
         
         button.setOnMouseExited(e -> {
-            button.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 12; " +
-                           "-fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 4);");
+            button.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; " +
+                           "-fx-border-width: 1; -fx-cursor: hand;");
         });
         
         button.setOnAction(e -> app.showInfectionSimulation(virus.getName()));
@@ -124,11 +120,11 @@ public class VirusSelectionController {
     
     private void setupButtonEffects() {
         backBtn.setOnMouseEntered(e -> 
-            backBtn.setStyle("-fx-background-color: #455a64; -fx-text-fill: white; " +
-                           "-fx-background-radius: 10; -fx-cursor: hand;"));
+            backBtn.setStyle("-fx-background-color: white; -fx-border-color: #2196F3; " +
+                           "-fx-border-width: 2; -fx-cursor: hand;"));
         backBtn.setOnMouseExited(e -> 
-            backBtn.setStyle("-fx-background-color: #607d8b; -fx-text-fill: white; " +
-                           "-fx-background-radius: 10; -fx-cursor: hand;"));
+            backBtn.setStyle("-fx-background-color: white; -fx-border-color: #cccccc; " +
+                           "-fx-border-width: 1;"));
     }
     
     private String getVirusEmoji(String virusName) {

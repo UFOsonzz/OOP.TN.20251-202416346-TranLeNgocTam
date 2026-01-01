@@ -7,6 +7,12 @@ package Domain.Virus;
  * Contains RNA genetic material in an icosahedral capsid
  */
 public class PolioVirus extends NonEnvelopedVirus {
+    
+    // Auto-registration with VirusRepository - no need to modify Repository when adding new virus!
+    static {
+        VirusRepository.registerVirus(PolioVirus.class);
+    }
+    
     public PolioVirus(NucleicAcid nucleicAcid, Capsid capsid, InfectionStrategy infectionStrategy) {
         super("PolioVirus", nucleicAcid, capsid, infectionStrategy);
     }

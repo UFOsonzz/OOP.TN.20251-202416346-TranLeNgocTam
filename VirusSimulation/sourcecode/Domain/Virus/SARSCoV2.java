@@ -7,6 +7,12 @@ package Domain.Virus;
  * Contains RNA genetic material in a helical capsid
  */
 public class SARSCoV2 extends EnvelopedVirus {
+    
+    // Auto-registration with VirusRepository - no need to modify Repository when adding new virus!
+    static {
+        VirusRepository.registerVirus(SARSCoV2.class);
+    }
+    
     public SARSCoV2(NucleicAcid nucleicAcid, Capsid capsid, InfectionStrategy infectionStrategy, LipidEnvelop lipidEnvelop) {
         super("SARS-CoV-2", nucleicAcid, capsid, infectionStrategy, lipidEnvelop);
     }

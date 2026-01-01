@@ -15,8 +15,8 @@ public class VirusSimulationDemo {
         System.out.println("   VIRUS INFECTION SIMULATION DEMO");
         System.out.println("==============================================\n");
         
-        // Create virus repository with all viruses
-        VirusRepository repository = VirusFactory.createVirusRepository();
+        // Get virus repository singleton instance with all registered viruses
+        VirusRepository repository = VirusRepository.getInstance();
         
         // Demo 1: Non-Enveloped Viruses
         demonstrateNonEnvelopedViruses(repository);
