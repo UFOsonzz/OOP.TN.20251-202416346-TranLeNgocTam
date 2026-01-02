@@ -15,9 +15,4 @@ public class Receptor {
     public String getType() {
         return type;
     }
-    
-    @Override
-    public String toString() {
-        return type + " receptor";
-    }
 }

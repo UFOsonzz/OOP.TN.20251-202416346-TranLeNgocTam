@@ -1,4 +1,9 @@
 package Domain.Host;
+
+/**
+ * Represents a host cell that can be infected by viruses
+ * Each cell has specific receptors on its membrane that viruses can bind to
+ */
 public class HostCell {
     private Receptor receptor;
     
@@ -8,10 +13,5 @@ public class HostCell {
     
     public Receptor getReceptor() {
         return receptor;
-    }
-    
-    @Override
-    public String toString() {
-        return "Host cell with " + receptor.toString();
     }
 }

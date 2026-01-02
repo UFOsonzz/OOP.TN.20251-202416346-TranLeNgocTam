@@ -11,9 +11,7 @@ import Domain.Virus.*;
 public class VirusSimulationDemo {
     
     public static void main(String[] args) {
-        System.out.println("==============================================");
-        System.out.println("   VIRUS INFECTION SIMULATION DEMO");
-        System.out.println("==============================================\n");
+        System.out.println("\n=== VIRUS INFECTION SIMULATION DEMO ===");
         
         // Get virus repository singleton instance with all registered viruses
         VirusRepository repository = VirusRepository.getInstance();
@@ -24,18 +22,14 @@ public class VirusSimulationDemo {
         // Demo 2: Enveloped Viruses
         demonstrateEnvelopedViruses(repository);
         
-        System.out.println("\n==============================================");
-        System.out.println("   SIMULATION COMPLETED");
-        System.out.println("==============================================");
+        System.out.println("\n=== SIMULATION COMPLETED ===");
     }
     
     /**
      * Demonstrates infection process for non-enveloped viruses
      */
     private static void demonstrateNonEnvelopedViruses(VirusRepository repository) {
-        System.out.println("\n╔════════════════════════════════════════════╗");
-        System.out.println("║  NON-ENVELOPED VIRUSES DEMONSTRATION      ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
+        System.out.println("\n=== NON-ENVELOPED VIRUSES DEMONSTRATION ===");
         
         // Create a generic host cell with a receptor
         HostCell hostCell = new HostCell(new Receptor("CAR")); // Coxsackievirus and Adenovirus Receptor
@@ -55,9 +49,7 @@ public class VirusSimulationDemo {
      * Demonstrates infection process for enveloped viruses
      */
     private static void demonstrateEnvelopedViruses(VirusRepository repository) {
-        System.out.println("\n╔════════════════════════════════════════════╗");
-        System.out.println("║  ENVELOPED VIRUSES DEMONSTRATION          ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
+        System.out.println("\n=== ENVELOPED VIRUSES DEMONSTRATION ===");
         
         // Demo HIV infection
         System.out.println("\n=== HIV Infection Scenario ===");

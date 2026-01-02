@@ -47,13 +47,10 @@ public abstract class Virus {
      * @param hostCell The target host cell to infect
      */
     public void infect(HostCell hostCell) {
-        System.out.println("\n========================================");
-        System.out.println("Starting infection simulation for: " + this.name);
-        System.out.println("Virus type: " + (isEnveloped() ? "Enveloped" : "Non-enveloped"));
-        System.out.println("========================================\n");
+        System.out.println("\n--- Starting infection: " + this.name + " (" + (isEnveloped() ? "Enveloped" : "Non-enveloped") + ") ---");
         
         // Phase 1: Attachment
-        System.out.println("[PHASE 1: ATTACHMENT]");
+        System.out.println("\n[PHASE 1: ATTACHMENT]");
         infectionStrategy.attach(this, hostCell);
         
         // Phase 2: Entry
@@ -64,9 +61,7 @@ public abstract class Virus {
         System.out.println("\n[PHASE 3: NUCLEIC ACID INJECTION]");
         infectionStrategy.injectNucleicAcid(this, hostCell);
         
-        System.out.println("\n========================================");
-        System.out.println("Infection simulation completed!");
-        System.out.println("========================================\n");
+        System.out.println("\n--- Infection completed! ---\n");
     }
     
     /**
@@ -74,22 +69,21 @@ public abstract class Virus {
      * @return String describing virus components
      */
     public String getDescription() {
-        StringBuilder desc = new StringBuilder();
-        desc.append("Virus: ").append(name).append("\n");
-        desc.append("Type: ").append(isEnveloped() ? "Enveloped" : "Non-enveloped").append("\n");
-        desc.append("Nucleic Acid: ").append(nucleicAcid.getType()).append("\n");
-        desc.append("Capsid Shape: ").append(capsid.getShape()).append("\n");
+        String desc = "Virus: " + name + "\n";
+        desc += "Type: " + (isEnveloped() ? "Enveloped" : "Non-enveloped") + "\n";
+        desc += "Nucleic Acid: " + nucleicAcid.getType() + "\n";
+        desc += "Capsid Shape: " + capsid.getShape() + "\n";
         
         if (this instanceof EnvelopedVirus) {
             EnvelopedVirus envVirus = (EnvelopedVirus) this;
-            desc.append("Glycoproteins: ");
+            desc += "Glycoproteins: ";
             for (Glycoprotein gp : envVirus.getLipidEnvelop().getGlycoproteins()) {
-                desc.append(gp.getName()).append(" ");
+                desc += gp.getName() + " ";
             }
-            desc.append("\n");
+            desc += "\n";
         }
         
-        return desc.toString();
+        return desc;
     }
 }
 
