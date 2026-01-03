@@ -30,34 +30,10 @@ public class LipidEnvelop {
         
         // Check if any glycoprotein matches the receptor type
         for (Glycoprotein gp : glycoproteins) {
-            // Matching logic: glycoprotein name should be compatible with receptor type
-            // For example: "CD4" glycoprotein binds to "CD4" receptor
-            // "Spike" glycoprotein binds to "ACE2" receptor
-            if (isCompatible(gp.getName(), receptorType)) {
+            // Delegate compatibility check to the Glycoprotein itself
+            if (gp.isCompatible(receptorType)) {
                 return true;
             }
-        }
-        
-        return false;
-    }
-    
-    /**
-     * Helper method to determine compatibility between glycoprotein and receptor
-     */
-    private boolean isCompatible(String glycoproteinName, String receptorType) {
-        // HIV: gp120 binds to CD4 receptor
-        if (glycoproteinName.equalsIgnoreCase("gp120") && receptorType.equalsIgnoreCase("CD4")) {
-            return true;
-        }
-        
-        // SARS-CoV-2: Spike protein binds to ACE2 receptor
-        if (glycoproteinName.equalsIgnoreCase("Spike") && receptorType.equalsIgnoreCase("ACE2")) {
-            return true;
-        }
-        
-        // Generic matching: if names match
-        if (glycoproteinName.equalsIgnoreCase(receptorType)) {
-            return true;
         }
         
         return false;

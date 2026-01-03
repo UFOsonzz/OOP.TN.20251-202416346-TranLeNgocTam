@@ -15,4 +15,33 @@ public class Glycoprotein {
     public String getName() {
         return name;
     }
+    
+    /**
+     * Checks if this glycoprotein is compatible with a given receptor type
+     * Implements the lock-key mechanism at the molecular level
+     * @param receptorType The type of receptor on the host cell
+     * @return true if this glycoprotein can bind to the receptor
+     */
+    public boolean isCompatible(String receptorType) {
+        if (receptorType == null) {
+            return false;
+        }
+        
+        // HIV: gp120 binds to CD4 receptor
+        if (this.name.equalsIgnoreCase("gp120") && receptorType.equalsIgnoreCase("CD4")) {
+            return true;
+        }
+        
+        // SARS-CoV-2: Spike protein binds to ACE2 receptor
+        if (this.name.equalsIgnoreCase("Spike") && receptorType.equalsIgnoreCase("ACE2")) {
+            return true;
+        }
+        
+        // Generic matching: if names match
+        if (this.name.equalsIgnoreCase(receptorType)) {
+            return true;
+        }
+        
+        return false;
+    }
 }
