@@ -84,11 +84,7 @@ public class VirusSimulationDemo {
      * Simulates animation delay for better visualization
      */
     private static void waitForAnimation() {
-        try {
-            Thread.sleep(1000); // 1 second pause between demonstrations
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        System.out.println("---");
     }
     
     /**

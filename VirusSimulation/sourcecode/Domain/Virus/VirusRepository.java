@@ -66,7 +66,7 @@ public class VirusRepository {
      * 
      * @return The singleton VirusRepository instance
      */
-    public static synchronized VirusRepository getInstance() {
+    public static VirusRepository getInstance() {
         if (instance == null) {
             instance = new VirusRepository();
         }
@@ -79,7 +79,7 @@ public class VirusRepository {
      * 
      * @param virusClass The virus class to register
      */
-    public static synchronized void registerVirus(Class<? extends Virus> virusClass) {
+    public static void registerVirus(Class<? extends Virus> virusClass) {
         try {
             // Find the createDefault() method using reflection
             Method createMethod = virusClass.getMethod("createDefault");
