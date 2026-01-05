@@ -93,6 +93,10 @@ public class ImageLoader {
     }
     
     public static Image getReceptorByType(String type) {
+        if (type == null) {
+            return loadImage("cells/receptor_generic.png");
+        }
+        
         switch (type.toUpperCase()) {
             case "CD4":
                 return loadImage("cells/receptor_cd4.png");
@@ -100,8 +104,14 @@ public class ImageLoader {
                 return loadImage("cells/receptor_ace2.png");
             case "CAR":
                 return loadImage("cells/receptor_car.png");
+            case "SIALIC ACID":
+                return loadImage("cells/receptor_sialic_acid.png");
+            case "PVR":
+                return loadImage("cells/receptor_pvr.png");
+            case "GENERIC":
+                return loadImage("cells/receptor_generic.png");
             default:
-                return loadImage("cells/receptor_car.png");
+                return loadImage("cells/receptor_generic.png");
         }
     }
     

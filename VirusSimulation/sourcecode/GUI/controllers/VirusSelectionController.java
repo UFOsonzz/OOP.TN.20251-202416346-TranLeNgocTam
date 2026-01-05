@@ -128,20 +128,20 @@ public class VirusSelectionController {
     }
     
     private String getVirusDetails(Virus virus) {
-        StringBuilder details = new StringBuilder();
-        details.append("Nucleic Acid: ").append(virus.getNucleicAcid().getType());
-        details.append(" | Capsid: ").append(virus.getCapsid().getShape());
+        String details = "";
+        details += "Nucleic Acid: " + virus.getNucleicAcid().getType();
+        details += " | Capsid: " + virus.getCapsid().getShape();
         
         if (virus instanceof EnvelopedVirus) {
             EnvelopedVirus envVirus = (EnvelopedVirus) virus;
-            details.append(" | Glycoproteins: ");
+            details += " | Glycoproteins: ";
             List<Glycoprotein> gps = envVirus.getLipidEnvelop().getGlycoproteins();
             for (int i = 0; i < gps.size(); i++) {
-                details.append(gps.get(i).getName());
-                if (i < gps.size() - 1) details.append(", ");
+                details += gps.get(i).getName();
+                if (i < gps.size() - 1) details += ", ";
             }
         }
         
-        return details.toString();
+        return details;
     }
 }

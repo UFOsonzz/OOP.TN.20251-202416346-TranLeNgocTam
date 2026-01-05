@@ -170,13 +170,14 @@ public class InfectionSimulationController {
             double x = 400 + 85 * Math.cos(angle);
             double y = 175 + 85 * Math.sin(angle);
             
-            // Just place and rotate the image
+            // Receptor pointing outward from cell center
             ImageView receptor = new ImageView(receptorImage);
-            receptor.setFitWidth(12);
-            receptor.setFitHeight(12);
-            receptor.setX(x - 6);
-            receptor.setY(y - 6);
-            receptor.setRotate(Math.toDegrees(angle));
+            receptor.setFitWidth(24);  // Increased from 12 to 24
+            receptor.setFitHeight(24);
+            receptor.setX(x - 12);
+            receptor.setY(y - 12);
+            // Rotate to point outward (perpendicular to radius)
+            receptor.setRotate(Math.toDegrees(angle) + 90);
             animationPane.getChildren().add(receptor);
             
             // Hidden marker for animation
@@ -331,13 +332,14 @@ public class InfectionSimulationController {
             double x = 30 + 30 * Math.cos(angle);
             double y = 30 + 30 * Math.sin(angle);
             
-            // Just place and rotate the image
+            // Spike protein pointing outward from virus center
             ImageView spike = new ImageView(spikeImage);
-            spike.setFitWidth(12);
-            spike.setFitHeight(12);
-            spike.setX(x - 6);
-            spike.setY(y - 6);
-            spike.setRotate(Math.toDegrees(angle));
+            spike.setFitWidth(24);  // Increased from 12 to 24
+            spike.setFitHeight(24);
+            spike.setX(x - 12);
+            spike.setY(y - 12);
+            // Rotate to point outward (perpendicular to radius)
+            spike.setRotate(Math.toDegrees(angle) + 90);
             spikes.getChildren().add(spike);
         }
         
