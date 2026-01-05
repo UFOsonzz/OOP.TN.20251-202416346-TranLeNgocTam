@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
@@ -19,16 +20,17 @@
             <padding>
                 <Insets top="20" bottom="15"/>
             </padding>
-            <Label fx:id="titleLabel" style="-fx-text-fill: #2196F3;">
-                <font>
-                    <Font size="18"/>
-                </font>
-            </Label>
-            <Label fx:id="infoLabel" wrapText="true" maxWidth="700" textAlignment="CENTER" alignment="CENTER" style="-fx-text-fill: #666666;">
-                <font>
-                    <Font size="11"/>
-                </font>
-            </Label>
+            <Label fx:id="titleLabel" style="-fx-text-fill: #2196F3; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label fx:id="infoLabel" wrapText="true" maxWidth="700" textAlignment="CENTER" alignment="CENTER" 
+                   style="-fx-text-fill: #666666; -fx-font-size: 11px;"/>
+            
+            <!-- Receptor Selection -->
+            <HBox alignment="CENTER" spacing="10" style="-fx-padding: 10 0 0 0;">
+                <Label text="Select Host Cell Receptor:" style="-fx-text-fill: #333333; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="receptorComboBox" onAction="#handleReceptorChange" 
+                          prefWidth="150" style="-fx-font-size: 11px;"/>
+                <Label fx:id="matchLabel" style="-fx-font-size: 11px; -fx-padding: 5px 10px; -fx-background-radius: 5px;"/>
+            </HBox>
         </VBox>
     </top>
     
@@ -39,23 +41,15 @@
             </padding>
             
             <VBox spacing="5">
-                <Label text="Animation" style="-fx-text-fill: #333333;">
-                    <font>
-                        <Font size="12"/>
-                    </font>
-                </Label>
+                <Label text="Animation" style="-fx-text-fill: #333333; -fx-font-size: 12px; -fx-font-weight: bold;"/>
                 <Pane fx:id="animationPane" prefWidth="500" prefHeight="350"
-                      style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1;"/>
+                      style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;"/>
             </VBox>
             
             <VBox spacing="5">
-                <Label text="Log" style="-fx-text-fill: #333333;">
-                    <font>
-                        <Font size="12"/>
-                    </font>
-                </Label>
+                <Label text="Simulation Log" style="-fx-text-fill: #333333; -fx-font-size: 12px; -fx-font-weight: bold;"/>
                 <TextArea fx:id="logArea" prefWidth="350" prefHeight="350" editable="false" wrapText="true"
-                          style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1;"/>
+                          style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-font-family: 'Courier New'; -fx-font-size: 11px; -fx-border-radius: 5; -fx-background-radius: 5;"/>
             </VBox>
         </HBox>
     </center>
@@ -65,27 +59,15 @@
             <padding>
                 <Insets top="10" bottom="15"/>
             </padding>
-            <Button fx:id="startBtn" text="Start" onAction="#handleStart" 
-                    prefWidth="80" prefHeight="30"
-                    style="-fx-background-color: white; -fx-border-color: #2196F3; -fx-border-width: 1; -fx-text-fill: #2196F3;">
-                <font>
-                    <Font size="12"/>
-                </font>
-            </Button>
+            <Button fx:id="startBtn" text="Start Infection" onAction="#handleStart" 
+                    prefWidth="120" prefHeight="35"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;"/>
             <Button fx:id="resetBtn" text="Reset" onAction="#handleReset" 
-                    prefWidth="80" prefHeight="30"
-                    style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1;">
-                <font>
-                    <Font size="12"/>
-                </font>
-            </Button>
+                    prefWidth="80" prefHeight="35"
+                    style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-font-size: 12px; -fx-background-radius: 5; -fx-cursor: hand;"/>
             <Button fx:id="backBtn" text="Back" onAction="#handleBack" 
-                    prefWidth="80" prefHeight="30"
-                    style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1;">
-                <font>
-                    <Font size="12"/>
-                </font>
-            </Button>
+                    prefWidth="80" prefHeight="35"
+                    style="-fx-background-color: white; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-font-size: 12px; -fx-background-radius: 5; -fx-cursor: hand;"/>
         </HBox>
     </bottom>
     

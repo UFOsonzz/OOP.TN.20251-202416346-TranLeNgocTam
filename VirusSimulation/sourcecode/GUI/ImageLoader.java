@@ -52,7 +52,13 @@ public class ImageLoader {
     
     // Capsids
     public static Image getCapsidByShape(String shape) {
-        switch (shape.toLowerCase()) {
+        if (shape == null) {
+            return loadImage("viruses/capsid_icosahedral.png");
+        }
+        
+        String normalized = shape.toLowerCase().trim();
+        
+        switch (normalized) {
             case "icosahedral":
                 return loadImage("viruses/capsid_icosahedral.png");
             case "helical":

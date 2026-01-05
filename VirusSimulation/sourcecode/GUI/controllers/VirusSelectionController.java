@@ -127,26 +127,6 @@ public class VirusSelectionController {
                            "-fx-border-width: 1;"));
     }
     
-    private String getVirusEmoji(String virusName) {
-        switch (virusName) {
-            case "HIV": return "🔴";
-            case "SARS-CoV-2": return "🦠";
-            case "AdenoVirus": return "🔷";
-            case "PolioVirus": return "🔵";
-            default: return "🦠";
-        }
-    }
-    
-    private String getVirusColor(String virusName) {
-        switch (virusName) {
-            case "HIV": return "#c62828";
-            case "SARS-CoV-2": return "#6a1b9a";
-            case "AdenoVirus": return "#1565c0";
-            case "PolioVirus": return "#2e7d32";
-            default: return "#424242";
-        }
-    }
-    
     private String getVirusDetails(Virus virus) {
         StringBuilder details = new StringBuilder();
         details.append("Nucleic Acid: ").append(virus.getNucleicAcid().getType());

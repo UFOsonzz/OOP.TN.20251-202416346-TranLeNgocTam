@@ -51,10 +51,19 @@ public class VirusRepository {
      */
     private void ensureVirusClassesLoaded() {
         try {
+            // Enveloped viruses
             Class.forName("Domain.Virus.HIV");
             Class.forName("Domain.Virus.SARSCoV2");
+            Class.forName("Domain.Virus.Influenza");
+            Class.forName("Domain.Virus.HerpesVirus");
+            Class.forName("Domain.Virus.MeaslesVirus");
+            Class.forName("Domain.Virus.HepatitisB");
+            
+            // Non-enveloped viruses
             Class.forName("Domain.Virus.AdenoVirus");
             Class.forName("Domain.Virus.PolioVirus");
+            Class.forName("Domain.Virus.TobaccoMosaicVirus");
+            Class.forName("Domain.Virus.BacteriophageLambda");
         } catch (ClassNotFoundException e) {
             System.err.println("[VirusRepository] Error loading virus class: " + e.getMessage());
         }

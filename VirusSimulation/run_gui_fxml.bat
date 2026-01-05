@@ -25,6 +25,15 @@ if not exist %JAVAFX_PATH% (
 echo JavaFX Path: %JAVAFX_PATH%
 echo.
 
+REM Clean old compiled classes
+echo Cleaning old compiled files...
+if exist "%~dp0sourcecode\GUI\*.class" del /Q "%~dp0sourcecode\GUI\*.class"
+if exist "%~dp0sourcecode\GUI\controllers\*.class" del /Q "%~dp0sourcecode\GUI\controllers\*.class"
+if exist "%~dp0sourcecode\Domain\*.class" del /Q "%~dp0sourcecode\Domain\*.class"
+if exist "%~dp0sourcecode\Domain\Host\*.class" del /Q "%~dp0sourcecode\Domain\Host\*.class"
+if exist "%~dp0sourcecode\Domain\Virus\*.class" del /Q "%~dp0sourcecode\Domain\Virus\*.class"
+echo.
+
 REM Navigate to source directory
 cd /d "%~dp0sourcecode"
 

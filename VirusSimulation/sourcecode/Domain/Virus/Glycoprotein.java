@@ -1,12 +1,39 @@
 package Domain.Virus;
 
-/**
- * Represents a glycoprotein on the lipid envelope of enveloped viruses
- * Glycoproteins act as "keys" that bind to specific receptors ("locks") on host cells
- * Examples: gp120 (HIV), Spike protein (SARS-CoV-2)
- */
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
+
+// glyco -> receptor: gp120 (HIV), Spike protein (SARS-CoV-2), hemagglutinin (Influenza) <- mo rong
+
 public class Glycoprotein {
     private String name;
+    
+    private static final Map<String, List<String>> COMPATIBLE_RECEPTORS = new HashMap<>();
+    
+    static {
+        // HIV glycoproteins
+        COMPATIBLE_RECEPTORS.put("gp120", Arrays.asList("CD4", "CCR5", "CXCR4"));
+        
+        // SARS-CoV-2 glycoproteins
+        COMPATIBLE_RECEPTORS.put("Spike", Arrays.asList("ACE2"));
+        
+        // Influenza glycoproteins
+        COMPATIBLE_RECEPTORS.put("Hemagglutinin", Arrays.asList("Sialic Acid"));
+        COMPATIBLE_RECEPTORS.put("Neuraminidase", Arrays.asList("Sialic Acid"));
+        
+        // Herpes Simplex Virus glycoproteins
+        COMPATIBLE_RECEPTORS.put("gB", Arrays.asList("Generic"));
+        COMPATIBLE_RECEPTORS.put("gD", Arrays.asList("Generic"));
+        
+        // Measles Virus glycoproteins
+        COMPATIBLE_RECEPTORS.put("H-protein", Arrays.asList("Generic"));
+        COMPATIBLE_RECEPTORS.put("F-protein", Arrays.asList("Generic"));
+        
+        // Hepatitis B Virus glycoproteins
+        COMPATIBLE_RECEPTORS.put("HBsAg", Arrays.asList("Generic"));
+    }
     
     public Glycoprotein(String name) {
         this.name = name;
@@ -16,32 +43,8 @@ public class Glycoprotein {
         return name;
     }
     
-    /**
-     * Checks if this glycoprotein is compatible with a given receptor type
-     * Implements the lock-key mechanism at the molecular level
-     * @param receptorType The type of receptor on the host cell
-     * @return true if this glycoprotein can bind to the receptor
-     */
     public boolean isCompatible(String receptorType) {
-        if (receptorType == null) {
-            return false;
-        }
-        
-        // HIV: gp120 binds to CD4 receptor
-        if (this.name.equalsIgnoreCase("gp120") && receptorType.equalsIgnoreCase("CD4")) {
-            return true;
-        }
-        
-        // SARS-CoV-2: Spike protein binds to ACE2 receptor
-        if (this.name.equalsIgnoreCase("Spike") && receptorType.equalsIgnoreCase("ACE2")) {
-            return true;
-        }
-        
-        // Generic matching: if names match
-        if (this.name.equalsIgnoreCase(receptorType)) {
-            return true;
-        }
-        
-        return false;
+        List<String> receptors = COMPATIBLE_RECEPTORS.get(this.name);
+        return receptors != null && receptors.contains(receptorType);
     }
 }
